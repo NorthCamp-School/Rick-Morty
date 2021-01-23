@@ -5,9 +5,9 @@ export function configureInput(characters){
     
     const input = document.querySelector('.input__buscador');
 
-    input.addEventListener('keypress', function(event){
+    input.addEventListener('keydown', function(event){
         
-        if(event.keyCode === 13){
+       // if(event.keyCode === 13){
 
             const value = input.value
              
@@ -19,10 +19,11 @@ export function configureInput(characters){
                 return nombre.includes(lowerValue)
             })
 
-            //console.log(filtered)
-            //clearCards()
+            clearCards()
             displayCards(filtered)
-    }})
+    //}
+
+})
 
    
 }

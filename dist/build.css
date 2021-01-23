@@ -174,8 +174,10 @@ body {
     margin-right: 8px; }
 
 .padre {
-  height: 0px;
-  width: 800px; }
+  width: 800px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0; }
 
 .api_class {
   -webkit-backdrop-filter: blur(3px);

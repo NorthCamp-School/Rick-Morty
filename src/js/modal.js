@@ -62,7 +62,8 @@ export function displayModal(){
 export function hideModal(){
 
     modal.addEventListener('click', function(event){
-        modal.remove()
+        let parent = document.querySelector('.api_modal')
+        parent.innerHTML = ''
         backGround.classList.remove('api_class')
     })    
 

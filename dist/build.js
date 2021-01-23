@@ -90,12 +90,13 @@
 /*!************************!*\
   !*** ./src/js/card.js ***!
   \************************/
-/*! exports provided: displayCards */
+/*! exports provided: displayCards, clearCards */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "displayCards", function() { return displayCards; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearCards", function() { return clearCards; });
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal */ "./src/js/modal.js");
 
 function displayCards(characters) {
@@ -133,39 +134,12 @@ function displayCard(character) {
   card.innerHTML = template;
   card.addEventListener('click', _modal__WEBPACK_IMPORTED_MODULE_0__["openPopup"]);
   padre.appendChild(card);
-} // export function clearCards(){
-//     for(let char of characters){
-//         displayCard(char).remove();
-//     }
-// }
-//Mirar la clase del contenedor
-
+}
 
 function clearCards() {
-  var fichas = document.querySelectorAll('.main__container__ficha');
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
-
-  try {
-    for (var _iterator2 = fichas[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var item = _step2.value;
-      item.remove();
-    }
-  } catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-        _iterator2.return();
-      }
-    } finally {
-      if (_didIteratorError2) {
-        throw _iteratorError2;
-      }
-    }
-  }
+  var parent = document.querySelector('.cards');
+  parent.innerHTML = '';
+  console.log('hi');
 } //clearCards()
 
 /***/ }),
@@ -204,20 +178,18 @@ __webpack_require__.r(__webpack_exports__);
 
 function configureInput(characters) {
   var input = document.querySelector('.input__buscador');
-  input.addEventListener('keypress', function (event) {
-    if (event.keyCode === 13) {
-      var value = input.value;
-      var filtered = characters.filter(function (char) {
-        //console.log(characters[0])
-        //console.log(char.name)
-        var nombre = char.name.toLowerCase();
-        var lowerValue = value.toLowerCase();
-        return nombre.includes(lowerValue);
-      }); //console.log(filtered)
-      //clearCards()
-
-      Object(_card__WEBPACK_IMPORTED_MODULE_0__["displayCards"])(filtered);
-    }
+  input.addEventListener('keydown', function (event) {
+    // if(event.keyCode === 13){
+    var value = input.value;
+    var filtered = characters.filter(function (char) {
+      //console.log(characters[0])
+      //console.log(char.name)
+      var nombre = char.name.toLowerCase();
+      var lowerValue = value.toLowerCase();
+      return nombre.includes(lowerValue);
+    });
+    Object(_card__WEBPACK_IMPORTED_MODULE_0__["clearCards"])();
+    Object(_card__WEBPACK_IMPORTED_MODULE_0__["displayCards"])(filtered); //}
   });
 }
 
@@ -255,7 +227,7 @@ function main() {
 
         if (characters.length >= characterNum) {
           Object(_card__WEBPACK_IMPORTED_MODULE_0__["displayCards"])(characters);
-          Object(_input__WEBPACK_IMPORTED_MODULE_1__["configureInput"])(characters); //clearCards()
+          Object(_input__WEBPACK_IMPORTED_MODULE_1__["configureInput"])(characters);
         }
       });
     }
@@ -305,7 +277,8 @@ function displayModal() {
 }
 function hideModal() {
   modal.addEventListener('click', function (event) {
-    modal.remove();
+    var parent = document.querySelector('.api_modal');
+    parent.innerHTML = '';
     backGround.classList.remove('api_class');
   });
 }

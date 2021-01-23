@@ -65,12 +65,14 @@
 }
 
 .padre{
-    height: 0px; 
     width:800px; 
+    position:sticky;
+    top: 0; 
 }
 
 .api_class{
     backdrop-filter: blur(3px); 
+
 }
 
 .api_modal{

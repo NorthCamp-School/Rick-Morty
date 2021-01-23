@@ -30,18 +30,10 @@ function displayCard(character){
     
 }
 
-// export function clearCards(){
-//     for(let char of characters){
-//         displayCard(char).remove();
-//     }
-// }
-
-//Mirar la clase del contenedor
-function clearCards() {
-    let fichas = document.querySelectorAll('.main__container__ficha')
-    for(let item of fichas) {
-        item.remove()
-    }
+export function clearCards() {
+    let parent = document.querySelector('.cards')
+    parent.innerHTML = ''
+    console.log('hi')
 }
 
 //clearCards()

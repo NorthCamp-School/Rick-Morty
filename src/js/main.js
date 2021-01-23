@@ -18,7 +18,6 @@ export function main(){
                 if(characters.length >= characterNum){
                     displayCards(characters);
                     configureInput(characters);
-                    //clearCards()
                  }  
             })  
         }
